@@ -72,6 +72,7 @@ function CreateOrder() {
         </div>
 
         <div>
+          <input type="hidden" name="cart" value={JSON.stringify(cart)} />
           <button>Order now</button>
         </div>
       </Form>
@@ -80,9 +81,17 @@ function CreateOrder() {
 }
 
 export async function action({ request }) {
-  const data = await request.formData();
-  const formData = Object.fromEntries(data);
-  console.log(formData);
+  const formData = await request.formData();
+  const data = Object.fromEntries(formData);
+  console.log(data);
+
+  const order = {
+    ...data,
+    cart: JSON.parse(data.cart),
+    priority: data.priority === "on",
+  };
+  console.log(order);
+
   return null;
 }
 
