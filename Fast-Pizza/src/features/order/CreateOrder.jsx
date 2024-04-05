@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Form, redirect, useActionData, useNavigation } from "react-router-dom";
 import { createOrder } from "../../services/apiRestaurant";
+import Button from "../../ui/Button";
 
 // https://uibakery.io/regex-library/phone-number
 const isValidPhone = (str) =>
@@ -48,13 +49,19 @@ function CreateOrder() {
       <Form method="POST">
         <div>
           <label>First Name</label>
-          <input type="text" name="customer" required />
+          <input type="text" name="customer" required 
+            className="input"
+
+          />
         </div>
 
         <div>
           <label>Phone number</label>
           <div>
-            <input type="tel" name="phone" required />
+            <input type="tel" name="phone" required 
+            className="input"
+
+            />
           </div>
           {formErrors?.phone && <p>{formErrors.phone}</p>}
         </div>
@@ -63,7 +70,7 @@ function CreateOrder() {
           <label>Address</label>
           <div>
             <input 
-            className="w-full rounded-full border border-stone-200 px-4 py-2 text-sm transition-all duration-300 focus:outline-none focus:ring-yellow-400 md:px-6 my-3"
+            className="input"
             type="text"
             name="address"
             required
@@ -85,9 +92,9 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting} className='bg-yellow-400 inline-block px-4 py-3 font-semibold tracking-wide rounded-full uppercase hover:bg-yellow-300 text-stone-800 duration-500 transition-colors focus:outline-none focus:bg-yellow-300 focus:ring focus:ring-yellow-300 focus:ring-offset-2 disabled:cursor-not-allowed'>
+          <Button disabled={isSubmitting}>
             {isSubmitting ? "...placing order" : "Order now"}
-          </button>
+          </Button>
         </div>
       </Form>
     </div>
