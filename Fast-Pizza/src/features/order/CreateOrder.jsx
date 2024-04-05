@@ -79,7 +79,7 @@ function CreateOrder() {
 
         <div>
           <input type="hidden" name="cart" value={JSON.stringify(cart)} />
-          <button disabled={isSubmitting}>
+          <button disabled={isSubmitting} className='bg-yellow-400 inline-block px-4 py-3 font-semibold tracking-wide rounded-full uppercase hover:bg-yellow-300 text-stone-800 duration-500 transition-colors focus:outline-none focus:bg-yellow-300 focus:ring focus:ring-yellow-300 focus:ring-offset-2'>
             {isSubmitting ? "...placing order" : "Order now"}
           </button>
         </div>
@@ -91,7 +91,6 @@ function CreateOrder() {
 export async function action({ request }) {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
-
   const order = {
     ...data,
     cart: JSON.parse(data.cart),

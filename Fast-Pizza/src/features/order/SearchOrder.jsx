@@ -12,7 +12,7 @@ function SearchOrder() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="text-center">
+    <form onSubmit={handleSubmit} className="">
       <input
         className="text-center"
         value={query}
