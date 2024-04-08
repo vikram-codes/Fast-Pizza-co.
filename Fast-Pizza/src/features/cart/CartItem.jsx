@@ -1,11 +1,8 @@
 import Button from "../../ui/Button";
 import { formatCurrency } from "../../utils/helpers";
 import { useDispatch } from "react-redux";
-import {
-  decreaseItemQuantity,
-  deleteItem,
-  increaseItemQuantity,
-} from "./cartSlice";
+import { deleteItem } from "./cartSlice";
+import ChangeQuantity from "./ChangeQuantity";
 
 function CartItem({ item }) {
   const { pizzaId, name, quantity, totalPrice } = item;
@@ -14,15 +11,6 @@ function CartItem({ item }) {
     e.preventDefault();
     dispatch(deleteItem(pizzaId));
   }
-  function handleIncreaseItemQuantity(e) {
-    e.preventDefault();
-    dispatch(increaseItemQuantity(pizzaId));
-  }
-  function handleDecreaseItemQuantity(e) {
-    e.preventDefault();
-    dispatch(decreaseItemQuantity(pizzaId));
-  }
-
   return (
     <li className="py-3 sm:flex sm:items-center sm:justify-between">
       <p className="mb-1 sm:mb-0">
@@ -30,12 +18,7 @@ function CartItem({ item }) {
       </p>
       <div className="flex items-center justify-between sm:gap-6">
         <p>{formatCurrency(totalPrice)}</p>
-        <Button type="small" onClick={handleDecreaseItemQuantity}>
-          -
-        </Button>
-        <Button type="small" onClick={handleIncreaseItemQuantity}>
-          +
-        </Button>
+        <ChangeQuantity item={item} />
         <Button type="small" onClick={handleDeleteItem}>
           delete
         </Button>
