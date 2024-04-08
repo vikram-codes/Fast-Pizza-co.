@@ -51,11 +51,10 @@ function Cart() {
 
   return (
     <div className="px-4 py-3">
-      <LinkButton to="/menu">&larr; Back to menu</LinkButton>
-
       {!cart.length ? (
         <>
-          <h2 className="mt-7 text-xl font-semibold">{username},</h2>
+          {/* <LinkButton to="/menu">&larr; Back to menu</LinkButton> */}
+
           <EmptyCart />
         </>
       ) : (
