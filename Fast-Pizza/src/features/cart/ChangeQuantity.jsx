@@ -5,12 +5,11 @@ import { useState } from "react";
 
 function ChangeQuantity({ item }) {
   const { pizzaId, quantity } = item;
-  const [disabled, setDisabled] = useState(false);
+  const { decreaseDisable, setDecreaseDisable } = useState(true);
   const dispatch = useDispatch();
   function handleDecreaseItemQuantity(e) {
     e.preventDefault();
     dispatch(decreaseItemQuantity(pizzaId));
-    if (quantity < 2) setDisabled(true);
   }
   function handleIncreaseItemQuantity(e) {
     e.preventDefault();
@@ -19,17 +18,17 @@ function ChangeQuantity({ item }) {
   return (
     <div className="">
       <Button
-        type="small"
-        disabled={disabled}
+        type={`${quantity === 1 ? "smallSecondary" : "small"}`}
         onClick={handleDecreaseItemQuantity}
+        disabled={true}
       >
         -
       </Button>
       <> </>
       <Button
-        type="small"
-        disabled={disabled}
+        type={`${quantity >= 10 ? "smallSecondary" : "small"}`}
         onClick={handleIncreaseItemQuantity}
+        disabled={true}
       >
         +
       </Button>
